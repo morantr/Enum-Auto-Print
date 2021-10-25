@@ -300,7 +300,7 @@ class EnumAutoPrint:
         if len(file_path) == 0:
             return
 
-        f = open(file_path, "r")
+        f = open(file_path, "r", encoding=self.conf.encoding)
         lines = f.readlines()
         f.close()
 
@@ -603,6 +603,10 @@ def read_configuration(conf: Configuration) -> Tuple[str, str, str]:
     formatter_close_direction_key = 'formatter_close_direction'
     if (formatter_close_direction_key in configuration.keys()):
         conf.formatter_close_str = configuration[formatter_close_direction_key]
+
+    encoding_key = 'encoding'
+    if (encoding_key in configuration.keys()):
+        conf.encoding = configuration[encoding_key]
 
     exclude_files_paths = set()
     workspace_root_key = str()
